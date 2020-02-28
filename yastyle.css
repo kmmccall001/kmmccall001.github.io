@@ -1,0 +1,76 @@
+body /* Tag selector */ { 
+    background-color: paleturquoise;
+}
+
+
+
+
+/* More specific than just li */
+ul li /* Ancestor selector */ {
+    color:black;
+}
+
+/* Not very specific at all, so this just picks up the li's unaffected by the styles above */
+li /* Tag selector */ {
+    color: purple;
+}
+
+/* Inheritance: style data is applied to an element *and* to all its descendants */
+.deep /* Class selector */ {
+    background-color: plum;
+}
+
+/* Inheritance: descendants can override inherited values */
+.contemp /* Class selector */ {
+    color: palevioletred;
+}
+
+/* Inheritance: descendants can override inherited values */
+.fantasy /* Class selector */ {
+    color: red;
+}
+
+.dystopian {
+    color: gray;
+}
+
+.steampunk {
+    color: brown;
+}
+
+.science {
+    color: blue;
+}
+
+.quote {
+    font-family: "Courier", monospace;
+    text-decoration: underline;
+}
+
+
+/* Font Style */
+.booktitle {
+    font-style: italic;
+}
+
+
+/* Make outlines */
+ol.outline {
+    list-style-type: upper-roman;
+}
+
+.outline > li > ol {
+    list-style-type: upper-alpha;
+}
+
+.outline > li > ol > li > ol {
+    list-style-type: decimal;
+}
+
+.outline > li > ol > li > ol > li > ol {
+    list-style-type: lower-alpha;
+}
+
+.outline > li > ol > li > ol > li > ol > li > ol {
+    list-style-type: lower-roman;
+}
