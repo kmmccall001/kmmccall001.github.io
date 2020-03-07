@@ -1,0 +1,51 @@
+
+/* More specific than just li */
+ul li /* Ancestor selector */ {
+    color: darkslateblue;
+    list-style-type: circle;
+    
+}
+
+/* Not very specific at all, so this just picks up the li's unaffected by the styles above */
+li /* Tag selector */ {
+    color:red;
+    list-style-type: upper-roman;
+}
+
+.example  { 
+    border: thin solid;
+    padding: .5em;
+    background-color:yellow;
+}
+
+
+tr:first-child th {
+    border-bottom-style: double;
+    
+}
+
+tr > :first-child {
+    border-right: thin solid;
+    
+}
+
+tr > :nth-child(2) {
+    border-right: thin solid;
+}
+
+tr > :nth-child(3) {
+    border-right: thin solid;
+} 
+
+td:last-of-type {
+    border-left: thin dotted;
+}
+
+
+td {
+    padding-top: 0.5ex;
+    padding-right: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+}
+
