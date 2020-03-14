@@ -8,6 +8,7 @@ body /* Tag selector */ {
 /* More specific than just li */
 ul li /* Ancestor selector */ {
     color:black;
+    
 }
 
 /* Not very specific at all, so this just picks up the li's unaffected by the styles above */
@@ -36,15 +37,19 @@ li /* Tag selector */ {
 
 .steampunk {
     color: brown;
+    vertical-align: bottom;
+    line-height: normal;
 }
 
 .science {
     color: blue;
+    float: right;
 }
 
 .quote {
     font-family: "Courier", monospace;
     text-decoration: underline;
+    
 }
 
 
@@ -55,22 +60,22 @@ li /* Tag selector */ {
 
 
 /* Make outlines */
-ol.outline {
+.outline {
     list-style-type: upper-roman;
+    display: inline;
 }
 
-.outline > li > ol {
-    list-style-type: upper-alpha;
+
+.newspaper {
+    column-width: 25em;
+    column-rule-width: thin;
+    column-rule-style: solid;
+    column-rule-color: grey;
 }
 
-.outline > li > ol > li > ol {
-    list-style-type: decimal;
-}
-
-.outline > li > ol > li > ol > li > ol {
-    list-style-type: lower-alpha;
-}
-
-.outline > li > ol > li > ol > li > ol > li > ol {
-    list-style-type: lower-roman;
+.post {
+    position: absolute;
+    top: 0;
+    left: 7em;
+    display: none;
 }
