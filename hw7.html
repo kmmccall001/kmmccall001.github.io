@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Homework 7</title>
+    <script src="7java.js"></script>
+    <script>
+// Function to calculate the area of a circle
+function squarearea(length) {
+    return length ** 2;
+}
+// Function to insert the area of a circle into a given element
+function insertSquareArea(element, length) {
+    element.innerHTML = 'Area: ' + squarearea(length);
+}
+    </script>
+    <style>
+      #radius { width: 4em; }
+
+      table { border-collapse: collapse; }
+      td { text-align: right;  width: 2em; }
+      tr:first-child > td, tr:first-child > th { border-bottom: thin solid; }
+      td:first-child, th:first-child { border-right: thin solid; }
+
+      .mybutton {
+			background-color: red;
+		}
+    </style>     
+  </head>
+  
+  
+  
+  <body>
+    <h2>Homework 7: A Good Cup of Java(Script)</h2>
+    <form>
+      <label for="length">Length of square's side:</label>
+      <input type="number" min="0" value="1" id="length" />
+      <span id="area_target"></span>      
+      <button onclick="insertSquareArea(this.previousElementSibling,
+		       document.querySelector('#length').value);"
+	      type="button">Calculate area</button>
+    </form>
+  
+
+
+    <h3 id="mybutton">PRESS THE RED BUTTON!</h3>
+    <form>
+      <!-- The code for the event handler is right there in the 
+       attribute. No function is either needed or called. -->
+      <button onclick="this.innerHTML = 'HOW DARE YOU';"
+          type="button" class="mybutton">Click me!</button> 
+    </form>
+
+
+    
+    <p>Is it Friday yet? <span id="friyay"></span></p>
+    <script>
+      document.querySelector('#friyay').innerHTML = makeChoice() + '.';
+    </script>
+    <noscript><code>
+      document.querySelector('#friyay').innerHTML = makeChoice() + '.';
+    </code></noscript>
+    
+
+    <!-- Code found from https://www.w3schools.com/jsref/jsref_concat_string.asp -->
+    <p> Do you drink coffee?</p>
+    <button onclick= "coffee()">Yes?</button>
+    <p id="demo"></p>
+    <script>
+        function coffee () {
+            var str1 = "Good ";
+            var str2 = "for ";
+            var str3 ="you";
+            var res = str1.concat(str2, str3)
+            document.getElementById("demo").innerHTML = res;
+        }
+    </script>
+
+<form>
+    <label for="doublenum">Please enter a number to be doubled:</label>
+    <input type="number" min="0" value="1" id="doublenum" />
+    <button
+	onclick="this.form.nextElementSibling.innerHTML
+		 = doublenum(this.previousElementSibling.value);"
+    type="button">Let's go!</button>
+</form>
+<script>
+    function doubledouble (doublenum) {
+        for (let i = 0; i < doublenum; i++) {
+            doublenum = doublenum * 2;
+        }
+        return doublenum;
+    }
+</script>
+
+
+
+    
+  </body>
+</html>
