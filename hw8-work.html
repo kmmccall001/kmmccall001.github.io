@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<script src="hw8.js"></script>
+	<title>Homework 8, CSC 235 Web Programming I, Spring 2020</title>
+	<style>
+		/* Indicate required elements */
+		.flag {
+			color: firebrick;
+		}
+
+		/* The required flag starts out as a red asterisk. */
+		.flag::before {
+			content: "*";
+			padding-left: 2px;
+		}
+
+		/* Change the red * to a green check once the control has been filled in.  
+   			The ~ is for selecting siblings without requiring that they be right 
+   			next to each other. */
+		:required:valid~.flag::before,
+		.flag.valid::before {
+			content: '✓';
+			color: green;
+		}
+
+		.graduation > input {
+			margin-left: 2em;
+		}
+
+		ul {
+			list-style-type: none;
+		}
+
+		.explanations {
+			padding: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Homework 8</h1>
+
+	<form action="https://moodle.converse.edu/CSC235/formecho.php" method="post" id="postform">
+		<fieldset>
+			<div class="inigo">&ldquo;Hello! My name is
+				<input name="nameblank" id="nameblank" required="required" />.<span class="flag"></span> You killed my
+				father. Prepare to die.&rdquo;<sup><a id="ref1" href="#note1">1</a></sup>
+				(Or not! &#x1F607;)</div>
+			<div class="email"><label for="email">An email address (maybe mine, maybe not)
+					is:</label>
+				<input name="email" id="email" type="email" required="required" /><span class="flag"></span></div>
+			<div class="graduation"><label>I expect to graduate in:</label>
+				<input type="radio" required="required" name="grad-year" value="2020" id="grad-2020" />
+				<label for="grad-2020">2020</label></span>
+				<input type="radio" required="required" name="grad-year" value="2021" id="grad-2021" />
+				<label for="grad-2021">2021</label>
+				<input type="radio" required="required" name="grad-year" value="2022" id="grad-2022" />
+				<label for="grad-2022">2022</label>
+				<input type="radio" required="required" name="grad-year" value="2023" id="grad-2023" />
+				<label for="grad-2023">2023</label>
+				<span class="flag"></span>
+			</div>
+			<div class="colors"><label>I am wearing clothes of the following colors (check all
+					that apply):</label><span id="checkbox-flag" class="flag" ></span>
+				<ul>
+					<li style="background-color: #9DC3D4"><input type="checkbox" name="Aquamarine" value="Aquamarine"
+							id="Aquamarine" onchange="buttonChecked(document.querySelectorAll('.colors input'), 4, document.querySelector('.colors .flag'))" />
+						<label for="Aquamarine">Aquamarine</label></li>
+					<li style="background-color: #F88F58"><input type="checkbox" name="Tangerine" value="Tangerine"
+							id="Tangerine" onchange="buttonChecked(document.querySelectorAll('.colors input'), 4, document.querySelector('.colors .flag'))" />
+						<label for="Tangerine">Tangerine</label></li>
+					<li style="background-color: #E5D68E"><input type="checkbox" name="Custard" value="Custard"
+							id="Custard" onchange="buttonChecked(document.querySelectorAll('.colors input'), 4, document.querySelector('.colors .flag'))" />
+						<label for="Custard">Custard</label></li>
+					<li style="background-color: #964F4C"><input type="checkbox" name="Marsala" value="Marsala"
+							id="Marsala" onchange="buttonChecked(document.querySelectorAll('.colors input'), 4, document.querySelector('.colors .flag'))" />
+						<label for="Marsala">Marsala</label></li>
+				</ul>
+				</div>
+			</div>
+			<input type="reset" value="Reset" /><input type="submit" value="Submit" />
+		</fieldset>
+	</form>
+
+	<ul class="explanations">
+		<li><span class="flag"></span> Required or invalid input (hover over control for explanation)</li>
+		<li><span class="flag valid"></span> Valid input</li>
+	</ul>
+
+	<p><sup><a href="#ref1" id="note1">1</a></sup> <span style="font-style: italic">The Princess Bride.</span> Dir. Rob
+		Reiner. Screenplay by William Goldman. Twentieth Century Fox Film Corp., 1987.</p>
+
+</body>
+
+</html>
