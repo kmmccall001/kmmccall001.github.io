@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+/* Indicate required elements */
+.flag { color: firebrick; }
+
+/* The required flag starts out as a red asterisk.  The ~ is for selecting
+siblings without requiring that they be immediately next to each other. */
+.flag::before {
+    content: "*";
+    padding-left: 2px;
+}
+
+/* Change the red * to a green check once the control has been filled in */
+:required:valid ~ .flag::before, .flag.valid::before {
+    content: '✓';
+    color: green;
+}
+
+/* Give the options in the color dropdown appropriate background colors */
+.green { background-color: lightgreen; }
+.blue { background-color: lightblue; }
+.mauve { background-color: #DFAEF4; }  /* rgb(223, 174, 244) */
+.puce { background-color: #CC8899; }  /* rgb(204, 136, 153) */
+.harvestgold { background-color: #DEAE6D; } /* rgb(222, 174, 109) */
+
+/* Make the range control wide enough to be usable */
+#airspeed {
+    width: 40%;
+    margin-top: 1ex;
+}
+
+/* Set the width of the readout for the range control */
+#airspeed-out {
+    width: 3.2em;
+    /*background-color: lightgray;*/
+    border: none;
+}
+
+/* Space out the checkboxes from each other and from the following <span>,
+so it's obvious which box belongs with which label */
+.swallow > label {
+    margin-right: 0.6em;
+}
+
+/* Space out the radio buttons from each other, so it's obvious which button
+belongs with which label */
+.swallow-name > input {
+    margin-left: 1em;
+}
+
+.explanations {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 3ex;
+}
+
+.border-bottom {
+    border-bottom: thin solid;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: right;
+}
+
+th, td {
+    padding-left: 1em;
+}
