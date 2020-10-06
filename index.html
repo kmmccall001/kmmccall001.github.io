@@ -7,7 +7,9 @@
     to you under the Apache License, Version 2.0 (the
     "License"); you may not use this file except in compliance
     with the License.  You may obtain a copy of the License at
+
     http://www.apache.org/licenses/LICENSE-2.0
+
     Unless required by applicable law or agreed to in writing,
     software distributed under the License is distributed on an
     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -27,71 +29,28 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src * 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
-        <title>Hello World</title>
+        <title>Temperature Convertor</title>
     </head>
     <body>
         <div class="app">
-            <input type="image" width="300" height="200" src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Kitten_%2803%29_by_Ron.jpg"
-                id="kitten" class="hidden animal" />
-            <input type="image" width="300" height="200" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Howling_wolf.jpg"
-                id="wolf" class="hidden animal" />
-            <input type="image" width="300" height="200" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Male_mallard_duck_2.jpg/1024px-Male_mallard_duck_2.jpg"
-                id="duck" class="hidden animal" />
-            <input type="image" width="300" height="200" src="https://upload.wikimedia.org/wikipedia/commons/3/30/Jubilee_and_Munin%2C_Ravens%2C_Tower_of_London_2016-04-30.jpg"
-                id="raven" class="hidden animal" />
-            <input type="image" width="300" height="200" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg"
-                id="tiger" class="hidden animal" />
-            <input type="image" width="450" height="225" src="https://www.geekgirlauthority.com/wp-content/uploads/2020/08/Dragon-Age-4-Concept-Art.jpg"
-                id="dreadwolf" class="hidden animal" /> 
-                <h1>Virtual Petting Zoo</h1>
-                <div id="deviceready" class="blink">
-                    <p class="event listening">Connecting to Device</p>
-                    <p class="event received">Device is Ready</p>
-                </div>
-                <form>
-                    <select id="petananimal" name="animals" required="required">
-                    <option value="">Please choose an animal to pet</option>
-                        <option  class="kitten" value="kitten">Cat</option>
-                        <option class = "wolf" value="wolf">Wolf</option>
-                        <option class = "duck" value="duck">Duck</option>
-                        <option  class = "raven" value="raven">Raven</option>
-                        <option  class = "tiger" value="tiger">Tiger</option>
-                        <option  class = "dreadwolf" value="dreadwolf"> The Dread Wolf</option>
-                    </select>
-                    </form>
+            <h1>Handy Dandy Temperature Convertor</h1>
+            <div>
+				<input type="number" placeholder="Celsius" id="celsius"/>
+                    <button type="button" onclick="ctof();"> Convert Celsius to Fahrenheit </button> 
             </div>
+            <div>
+				<input type="number" placeholder="Fahrenheit " id="fahrenheit" />
+                <button type="button" onclick="ftoc();">Convert Fahrenheit to Celsius </button>
+            </div>
+        </div>
+            <script></script>
             <script src="cordova.js"></script>
             <script src="js/index.js"></script>
-
-
-        </body>
-    </html>
-
-
-
-<!-- Citations
-    Cat: 
-        image:https://upload.wikimedia.org/wikipedia/commons/e/eb/Kitten_%2803%29_by_Ron.jpg
-        Sound:   
-    Wolf:
-        image: https://upload.wikimedia.org/wikipedia/commons/3/3c/Howling_wolf.jpg
-        Sound:https://www.freesoundslibrary.com/wolf-howling-sound-effect/#google_vignette
-    Duck:
-        image: https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Male_mallard_duck_2.jpg/1024px-Male_mallard_duck_2.jpg
-        Sound:https://www.freesoundslibrary.com/duck-quack/
-    Raven:
-        iamge: https://upload.wikimedia.org/wikipedia/commons/3/30/Jubilee_and_Munin%2C_Ravens%2C_Tower_of_London_2016-04-30.jpg
-        sound:https://www.freesoundslibrary.com/raven-sounds/
-    Tiger:
-        image: https://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg
-        sound: https://www.freesoundslibrary.com/tiger-sound/
-    Solas:
-        imaage:https://www.geekgirlauthority.com/wp-content/uploads/2020/08/Dragon-Age-4-Concept-Art.jpg
-        sound: Trimmed from https://www.youtube.com/watch?v=Nw3lrXlti-8
--->
+    </body>
+</html>

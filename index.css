@@ -25,7 +25,7 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
-    background-image:linear-gradient(to bottom, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:linear-gradient(to bottom, red, rgb(63, 192, 235));
     font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
     font-size:12px;
     height:100vh;
@@ -107,53 +107,4 @@ h1 {
     body {
         background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
     }
-}
-
-.hidden {
-    display: none;
-
-}
-
-
-
-.kitten {
-    width: 200;
-    height: 150;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/eb/Kitten_%2803%29_by_Ron.jpg");
-    
-}
-
-.wolf {
-    width: 200;
-    height: 150;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/3c/Howling_wolf.jpg");
-    
-}
-
-.duck {
-    width: 200;
-    height: 150;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Male_mallard_duck_2.jpg/1024px-Male_mallard_duck_2.jpg");
-    
-}
-
-.raven {
-    width: 200;
-    height: 150;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/30/Jubilee_and_Munin%2C_Ravens%2C_Tower_of_London_2016-04-30.jpg");
-    
-}
-
-.tiger {
-    width: 200;
-    height: 150;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg");
-    
-}
-
-.dreadwolf {
-    width: 450;
-    height: 225;
-    background-image: url("https://www.geekgirlauthority.com/wp-content/uploads/2020/08/Dragon-Age-4-Concept-Art.jpg");
-    
 }
