@@ -1,57 +1,82 @@
-let requestURL = 'https://moodle.converse.edu/CSC335/GSP-Fire-Stations.json';
-let request = new XMLHttpRequest();
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-
-request.onload = function(){
-    const firestationsText = request.response;
-    const firestations = JSON.parse(firestationsText);
-    maketable(firestations)
-    showFire(firestations)
-}
+const stationArray = {
+"stations": 
+[{"longitude":"-81.9346311","latitude":"34.90791653","name":"Arkwright FD","address":"1070 Southport Rd, Spartanburg, SC 29306"},{"longitude":"-82.360473","latitude":"34.772314","name":"Belmont FD","address":"701 Fork Shoals Rd, Greenville, SC 29605"},{"longitude":"-82.468695","latitude":"34.878723","name":"Berea FD Station 1","address":"7401 White Horse Rd, Greenville, SC 29611"},{"longitude":"-82.470261","latitude":"34.917907","name":"Berea FD Station 2","address":"54 Old Hunts Bridge, Greenville, SC 29617"},{"longitude":"-82.444689","latitude":"34.893402","name":"Berea FD Station 3","address":"401 Sulphur Springs Road, Greenville, SC 29617"},{"longitude":"-82.256892","latitude":"34.857306","name":"Boiling Springs FD Station 1","address":"5020 Pelham Rd, Greenville, SC 29615"},{"longitude":"-81.97495765","latitude":"35.04105307","name":"Boiling Springs FD Station 1","address":"905 Wesley Ct, Boiling Springs, SC 29316"},{"longitude":"-82.290559","latitude":"34.886961","name":"Boiling Springs FD Station 2","address":"2015 Hudson Rd, Greer, SC 29650"},{"longitude":"-81.94147956","latitude":"35.08049657","name":"Boiling Springs FD Station 2","address":"325 Mountain View Rd, Boiling Springs, SC 29316"},{"longitude":"-82.267465","latitude":"34.88876","name":"Boiling Springs FD Station 3","address":"228 S Batesville Rd, Greer, SC 29650"},{"longitude":"-82.15075834","latitude":"35.11598002","name":"Campobello FD","address":"50 Broad St, Campobello, SC 29322"},{"longitude":"-82.264356","latitude":"34.636534","name":"Canebrake FD Station 1","address":"100 Hillside Church Rd, Fountain Inn, SC 29644"},{"longitude":"-82.306649","latitude":"34.623159","name":"Canebrake FD Station 2","address":"McKelvey Rd & Berry Rd, Fountain Inn, SC"},{"longitude":"-82.258311","latitude":"34.598976","name":"Canebrake FD Station 3","address":"Hillside Church Rd & McKittrick Bridge Rd, Fountain Inn, SC"},{"longitude":"-81.89752357","latitude":"35.0385792","name":"Cherokee Springs FD Station 1","address":"201 Flatwood Dr, Chesnee, SC 29323"},{"longitude":"-81.92295043","latitude":"35.08501633","name":"Cherokee Springs FD Station 2","address":"870 Sandy Ford Rd, Chesnee, SC 29323"},{"longitude":"-81.94653435","latitude":"35.0363256","name":"Cherokee Springs FD Station 3","address":"3910 Parris Bridge Rd, Boiling Springs, SC 29316"},{"longitude":"-81.85971005","latitude":"35.12071685","name":"Chesnee Community FD Station 1","address":"5854 Chesnee Hwy, Chesnee, SC 29323"},{"longitude":"-81.89667516","latitude":"35.1617486","name":"Chesnee Community FD Station 2","address":"1500 Hwy 11 W, Chesnee, SC 29323"},{"longitude":"-82.220768","latitude":"34.807117","name":"Clear Spring FD Station 1","address":"3008 Woodruff Rd, Simpsonville, SC 29681"},{"longitude":"-82.17848","latitude":"34.759159","name":"Clear Spring FD Station 2","address":"2435 E Georgia Rd, Simpsonville, SC 29681"},{"longitude":"-81.84139171","latitude":"34.9933706","name":"Converse FD","address":"107 Tram St, Spartanburg, SC 29307"},{"longitude":"-81.9623483","latitude":"35.15008335","name":"Cooley Springs-Fingerville FD","address":"3325 Hwy 11 W, Chesnee, SC 29323"},{"longitude":"-81.80281827","latitude":"35.02284439","name":"Cowpens FD","address":"144 Battleground Rd, Cowpens, SC 29330"},{"longitude":"-81.88466218","latitude":"34.90707834","name":"Croft FD","address":"370 Cedar Springs Rd, Spartanburg, SC 29302"},{"longitude":"-81.85762114","latitude":"34.64179438","name":"Cross Anchor FD","address":"11925 Hwy 56, Cross Anchor, SC, 29331"},{"longitude":"-82.383562","latitude":"34.756854","name":"Donaldson Center FD","address":"2291 Perimeter Rd, Greenville, SC 29605"},{"longitude":"-81.90139186","latitude":"34.97223233","name":"Drayton FD","address":"50 Carney St, Drayton, SC, 29333"},{"longitude":"-82.429556","latitude":"34.914713","name":"Duncan Chapel FD","address":"5111 Old Buncombe Rd, Greenville, SC 29617"},{"longitude":"-82.14298382","latitude":"34.93726991","name":"Duncan FD Station 1","address":"230 School St, Duncan, SC 29334"},{"longitude":"-82.17607512","latitude":"34.92161533","name":"Duncan FD Station 2","address":"945 Gilliam Rd, Greer, SC 29651"},{"longitude":"-82.10989844","latitude":"34.95564019","name":"Duncan FD Station 3","address":"127 Syphrit Rd, Wellford, SC 29385"},{"longitude":"-82.308792","latitude":"34.516639","name":"Dunklin FD Station 1","address":"11353 Augusta Rd, Honea Path, SC 29654"},{"longitude":"-82.284272","latitude":"34.57261","name":"Dunklin FD Station 2","address":"1026 Dunklin Bridge Rd, Fountain Inn, SC 29644"},{"longitude":"-82.327981","latitude":"34.564548","name":"Dunklin FD Station 3","address":"10569 Augusta Rd, Belton, SC 29627"},{"longitude":"-81.96486735","latitude":"34.65462327","name":"Enoree FD","address":"15799 Hwy 221, Enoree, SC 29335"},{"longitude":"-82.200512","latitude":"34.695491","name":"Fountain Inn FD","address":"200 N Main St, Fountain Inn, SC 29644"},{"longitude":"-82.413613","latitude":"34.785849","name":"Gantt FD Station 1","address":"1331 White Horse Rd, Greenville, SC 29605"},{"longitude":"-82.378675","latitude":"34.777949","name":"Gantt FD Station 2","address":"5604 Augusta Rd, Greenville, SC 29605"},{"longitude":"-82.421064","latitude":"34.800889","name":"Gantt FD Station 3","address":"31 Murrell Rd, Greenville, SC 29605"},{"longitude":"-82.33489","latitude":"35.120799","name":"Glassy Mountain FD Station 1","address":"2015 Hwy 11, Landrum, SC 29356"},{"longitude":"-82.456877","latitude":"35.123704","name":"Glassy Mountain FD Station 2","address":"315 Beaver Dam Road, Travelers Rest, SC 29690"},{"longitude":"-82.225043","latitude":"35.160297","name":"Glassy Mountain FD Station 3","address":"400 Oak Grove Road, Landrum, SC 29356"},{"longitude":"-82.426525","latitude":"35.12731","name":"Glassy Mountain FD Station 4","address":"49 Dividing Water Rd, Travelers Rest, SC 29690"},{"longitude":"-82.32811","latitude":"35.149986","name":"Glassy Mountain FD Station 5","address":"3 Rolling Hill Way, Landrum SC, 29356"},{"longitude":"-81.83579353","latitude":"34.94588991","name":"Glendale FD Station 1","address":"215 Church St, Glendale, SC 29346"},{"longitude":"-81.82457083","latitude":"34.92882947","name":"Glendale FD Station 2","address":"137 Brown Rd, Spartanburg, SC 29302"},{"longitude":"-81.87043647","latitude":"34.82803763","name":"Glenn Springs-Pauline FD Station 1","address":"3104 Hwy 56, Pauline, SC 29374"},{"longitude":"-81.87374915","latitude":"34.7733097","name":"Glenn Springs-Pauline FD Station 2","address":"1475 Blackstock Rd, Pauline, SC 29374"},{"longitude":"-82.226921","latitude":"35.096266","name":"Gowensville FD","address":"2201 W Old Highway 14, Landrum, SC 29356"},{"longitude":"-82.416531","latitude":"34.8463","name":"Greenville FD Station 2","address":"125 Leach St, Greenville, SC 29601"},{"longitude":"-82.394174","latitude":"34.824878","name":"Greenville FD Station 3","address":"2101 Augusta St, Greenville, SC 29605"},{"longitude":"-82.385651","latitude":"34.855543","name":"Greenville FD Station 4","address":"880 E Stone Ave, Greenville, SC 29601"},{"longitude":"-82.352453","latitude":"34.833638","name":"Greenville FD Station 5","address":"15 Waite St, Greenville, SC 29607"},{"longitude":"-82.353545","latitude":"34.867766","name":"Greenville FD Station 6","address":"14 Pelham Rd, Greenville, SC 29615"},{"longitude":"-82.387612","latitude":"34.881082","name":"Greenville FD Station 7","address":"801 Rutherford Rd, Greenville, SC 29609"},{"longitude":"-82.228224","latitude":"34.938895","name":"Greer FD Station 1","address":"103 W Poinsett St, Greer, SC 29650"},{"longitude":"-82.256302","latitude":"34.927262","name":"Greer FD Station 2","address":"1985 Hood Rd, Greer, SC 29650"},{"longitude":"-82.216181","latitude":"34.893842","name":"GSP Airport FD","address":"2000 GSP Dr Suite 1, Greer, SC 29651"},{"longitude":"-81.95913297","latitude":"34.97618676","name":"Hilltop FD","address":"144 Crockett St, Spartanburg, SC 29303"},{"longitude":"-81.92789751","latitude":"34.69602744","name":"Hobbysville FD","address":"4331 Cross Anchor Rd, Enoree, SC 29335"},{"longitude":"-82.18445753","latitude":"35.02755216","name":"Holly Springs FD","address":"3301 Hwy 357, Inman, SC 29349"},{"longitude":"-82.11531478","latitude":"35.05524144","name":"Inman Community FD Station 1","address":"150 Windmill Hill Rd, Inman, SC 29349"},{"longitude":"-82.0767243","latitude":"35.03829128","name":"Inman Community FD Station 2","address":"11130 Asheville Hwy., Inman, South Carolina 29349"},{"longitude":"-82.09285828","latitude":"35.04737406","name":"Inman FD","address":"6 N Humphrey St, Inman, SC 29349"},{"longitude":"-82.275952","latitude":"34.985887","name":"Lake Cunningham FD","address":"2802 N Mcelhaney Rd, Greer, SC 29651"},{"longitude":"-82.19138898","latitude":"35.17760525","name":"Landrum FD","address":"200 N Trade Ave, Landrum, SC 29356"},{"longitude":"-82.308235","latitude":"34.779091","name":"Mauldin FD Headquarters","address":"9 E Butler Rd, Mauldin, SC 29662"},{"longitude":"-82.294364","latitude":"34.802261","name":"Mauldin FD Station 1","address":"802 Miller Rd, Greenville, SC 29607"},{"longitude":"-82.276054","latitude":"34.820395","name":"Mauldin FD Station 2","address":"300 Rocky Creek Rd, Greenville, SC 29615"},{"longitude":"-81.85991835","latitude":"35.08157767","name":"Mayo FD Station 1","address":"150 Church St, Mayo, SC 29368"},{"longitude":"-81.90505386","latitude":"35.10914465","name":"Mayo FD Station 2","address":"1296 Buck Creek Rd, Chesnee, SC 29323"},{"longitude":"-82.04407249","latitude":"35.12152883","name":"New Prospect FD Station 1","address":"8951 Hwy 9, Inman, SC 29349"},{"longitude":"-82.08888125","latitude":"35.16884685","name":"New Prospect FD Station 2","address":"945 Loop Rd, Campobello, SC 29322"},{"longitude":"-82.399639","latitude":"34.983707","name":"North Greenville FD Station 1","address":"923 Tigerville Rd, Travelers Rest, SC 29690"},{"longitude":"-82.476522","latitude":"34.970876","name":"North Greenville FD Station 2","address":"596 Hodgens Dr, Travelers Rest, SC 29690"},{"longitude":"-82.01081292","latitude":"35.00564008","name":"North Spartanburg FD Station 1","address":"8767 Asheville Hwy, Boiling Springs, SC 29316"},{"longitude":"-82.07515117","latitude":"34.98820291","name":"North Spartanburg FD Station 2","address":"1556 John Dodd Rd, Spartanburg, SC 29303"},{"longitude":"-82.03138722","latitude":"34.99244684","name":"North Spartanburg FD Station 3","address":"2621 New Cut Rd, Spartanburg, SC 29303"},{"longitude":"-81.76719327","latitude":"34.89641741","name":"Pacolet FD Station 1","address":"160 Hillbrook Cir, Pacolet, SC 29372"},{"longitude":"-81.74739501","latitude":"34.91530068","name":"Pacolet FD Station 2","address":"1425 N Hwy 150, Pacolet, SC 29372"},{"longitude":"-82.418755","latitude":"34.87033","name":"Parker FD Station 1","address":"107 Cedar Lane Rd, Greenville, SC 29601"},{"longitude":"-82.440162","latitude":"34.832933","name":"Parker FD Station 2","address":"104 S Washington Ave, Greenville, SC 29611"},{"longitude":"-82.398121","latitude":"34.893607","name":"Parker FD Station 3","address":"State Park Rd & Worley Rd, Greenville, SC"},{"longitude":"-82.424675","latitude":"34.819634","name":"Parker FD Station 4","address":"86 Allen St, Greenville, SC 29605"},{"longitude":"-82.22216092","latitude":"34.8618395","name":"Pelham-Batesville FD Station 1","address":"2761 S Hwy 14, Greer, SC 29650"},{"longitude":"-82.240216","latitude":"34.906302","name":"Pelham-Batesville FD Station 2","address":"1605 S Hwy 14, Greer, SC 29650"},{"longitude":"-82.228122","latitude":"34.828244","name":"Pelham-Batesville FD Station 3","address":"431 Batesville Rd, Simpsonville, SC 29681"},{"longitude":"-82.19790044","latitude":"34.87590758","name":"Pelham-Batesville FD Station 4","address":"789 Brockman Mcclimon Rd, Greer, SC 29651"},{"longitude":"-82.461847","latitude":"34.704433","name":"Piedmont FD Station 1","address":"3 Highway 86, Piedmont, SC 29673"},{"longitude":"-82.438633","latitude":"34.73433","name":"Piedmont FD Station 2","address":"Piedmont Golf Course Rd, Piedmont, SC"},{"longitude":"-82.372149","latitude":"34.912545","name":"Piedmont Park FD Station 1","address":"2119 State Park Rd, Greenville, SC 29609"},{"longitude":"-82.345764","latitude":"34.96193","name":"Piedmont Park FD Station 2","address":"E Darby Rd, Taylors, SC"},{"longitude":"-82.03887815","latitude":"34.87475539","name":"Poplar Springs FD Station 1","address":"3400 Moore-Duncan Hwy, Moore, SC 29369"},{"longitude":"-82.07868499","latitude":"34.92513486","name":"Poplar Springs FD Station 2","address":"2050 Nazareth Rd, Wellford, SC 29385"},{"longitude":"-82.01444007","latitude":"34.80246332","name":"Poplar Springs FD Station 3","address":"7850 Hwy 221, Moore, SC 29369"},{"longitude":"-82.11660648","latitude":"34.86441386","name":"Reidville FD","address":"7450 Reidville Rd, Reidville, SC 29375"},{"longitude":"-82.5395","latitude":"35.120295","name":"River Falls FD","address":"602 River Falls Rd, Marietta, SC 29661"},{"longitude":"-81.9572612","latitude":"34.8681909","name":"Roebuck FD","address":"2639 Stone Station Rd, Roebuck, SC 29376"},{"longitude":"-82.251533","latitude":"34.739091","name":"Simpsonville FD Station 1","address":"403 E Curtis St, Simpsonville, SC 29681"},{"longitude":"-82.267808","latitude":"34.730935","name":"Simpsonville FD Station 2","address":"9 Capewood Rd, Simpsonville, SC 29680"},{"longitude":"-82.257138","latitude":"34.773697","name":"Simpsonville FD Station 3","address":"839 Hwy 14, Simpsonville, SC 29681"},{"longitude":"-82.274053","latitude":"34.695279","name":"Simpsonville FD Station 4","address":"1375 Neely Ferry Rd, Simpsonville, SC 29680"},{"longitude":"-82.501214","latitude":"35.026728","name":"Slater Marietta FD Station 1","address":"3001 Geer Hwy, Marietta SC 29661"},{"longitude":"-82.44566","latitude":"35.041579","name":"Slater Marietta FD Station 2","address":"1030 Bates Crossing Rd, Travelers Rest, SC 29690"},{"longitude":"-82.39906","latitude":"34.6852","name":"South Greenville FD Station 1","address":"8305 Augusta Rd, Pelzer, SC 29669"},{"longitude":"-82.386571","latitude":"34.720319","name":"South Greenville FD Station 2","address":"29005 Old Augusta Rd, Piedmont, SC 29673"},{"longitude":"-82.332541","latitude":"34.707496","name":"South Greenville FD Station 3","address":"3 Holcombe Rd, Piedmont, SC 29673 "},{"longitude":"-82.391662","latitude":"34.629165","name":"South Greenville FD Station 4","address":"30044 Augusta Rd, Pelzer, SC 29669"},{"longitude":"-82.370376","latitude":"34.546788","name":"South Greenville FD Station 5","address":"1535 Holiday Dam Rd, Belton, SC 29627"},{"longitude":"-82.306695","latitude":"34.710869","name":"South Greenville FD Station 6","address":"W Georgia Rd & Rocky Creek Rd, Simpsonville, SC 29680"},{"longitude":"-81.932344","latitude":"34.947636","name":"Spartanburg City FD Station 1","address":"151 S Spring St, Spartanburg, SC 29306"},{"longitude":"-81.90631072","latitude":"34.93878098","name":"Spartanburg City FD Station 2","address":"905 Union St, Spartanburg, SC 29302"},{"longitude":"-81.94092347","latitude":"34.95867481","name":"Spartanburg City FD Station 3","address":"510 Magnolia St, Spartanburg, SC 29303"},{"longitude":"-81.97953678","latitude":"34.9343232","name":"Spartanburg City FD Station 4","address":"200 Camelot Dr, Spartanburg, SC 29301"},{"longitude":"-81.88909673","latitude":"34.96545677","name":"Spartanburg City FD Station 5","address":"1075 Fernwood Glendale Rd, Spartanburg, SC 29307"},{"longitude":"-82.09247671","latitude":"34.9365773","name":"Startex FD","address":"170 Spartanburg Rd, Startex, SC 29377"},{"longitude":"-82.315015","latitude":"34.918707","name":"Taylors FD Station 1","address":"3335 Wade Hampton Blvd., Taylors, SC 29687"},{"longitude":"-82.313797","latitude":"34.899294","name":"Taylors FD Station 2","address":"405 Brushy Creek Road, Taylors, SC 29687"},{"longitude":"-82.300333","latitude":"34.952473","name":"Taylors FD Station 3","address":"858 Saint Mark Road, Taylors, SC 29687"},{"longitude":"-82.377119","latitude":"35.065481","name":"Tigerville FD","address":"2605 Hwy 414, Travelers Rest, SC 29690"},{"longitude":"-82.437093","latitude":"34.970894","name":"Travelers Rest FD","address":"117 N Poinsett Hwy, Travelers Rest, SC 29690"},{"longitude":"-82.17377398","latitude":"34.95733475","name":"Tyger River FD Station 1","address":"1090 Gap Creek Rd, Lyman, SC 29365"},{"longitude":"-82.13020856","latitude":"34.95044247","name":"Tyger River FD Station 2","address":"355 Locust St, Lyman, SC 29365"},{"longitude":"-81.96511245","latitude":"34.96468713","name":"Una FD","address":"1025 Hayne St, Spartanburg, SC 29301"},{"longitude":"-82.335239","latitude":"34.902501","name":"Wade Hampton FD Station 1","address":"2815 Wade Hampton Blvd, Taylors, SC 29687"},{"longitude":"-82.313974","latitude":"34.855461","name":"Wade Hampton FD Station 2","address":"1118 Pelham Rd., Greenville, SC 29615"},{"longitude":"-82.358687","latitude":"34.884307","name":"Wade Hampton FD Station 3","address":"15222 Pine Knoll Dr, Greenville, SC 29609"},{"longitude":"-82.317681","latitude":"34.878899","name":"Wade Hampton FD Station 4","address":"4211 East North Street, Greenville, S.C. 29615"},{"longitude":"-82.00359193","latitude":"34.93674099","name":"Westview-Fairforest FD Station 1","address":"311 N Blackstock Rd, Spartanburg, SC 29301"},{"longitude":"-82.00501961","latitude":"34.90697299","name":"Westview-Fairforest FD Station 2","address":"4247 Anderson Mill Rd, Moore, SC 29369"},{"longitude":"-82.02143007","latitude":"34.96362911","name":"Westview-Fairforest FD Station 3","address":"870 Falling Creek Rd, Spartanburg, SC 29301"},{"longitude":"-81.92000688","latitude":"34.99412741","name":"Whitney FD","address":"220 Bryant Rd, Spartanburg, SC 29303"},{"longitude":"-82.02954135","latitude":"34.74386049","name":"Woodruff FD Station 1","address":"220 Armory Dr, Woodruff, SC 29388"},{"longitude":"-82.11181118","latitude":"34.77104359","name":"Woodruff FD Station 2","address":"707 River Rd, Woodruff, SC 29388"}]};
+const parsestations = JSON.parse(stationArray);
+console.log(parsetations.result);
 
 
+const data = parsestations
 
-function makeTable(fields, data) {
-    // Make the table itself
+function makeTable(stationArray){
+    let tableDiv = document.getElementById('fire-station-table')
+    tableDiv.innerHTML = '';
+
     let table = document.createElement('table');
-
-    // Add a header row to the table
-    let row = document.createElement('tr');
-    for (field of fields) {
-        // Capitalize the field names
-        displayTitle = field[0].toUpperCase() + field.substring(1).toLowerCase()
-        row.appendChild(makeAndFillElt('th', displayTitle))
+    let row = documnet.createElement('tr');
+    let firststation = stationArray.stations[0];
+    for (let key of Object.keys(firststation)){
+        let th = document.createElement('th');
+        th.innerHTML = key.replace(key.charAt(0), key.charAt(0).toUpperCase());
+        row.appendChild(th)
     }
-    table.appendChild(row);
+    table.appendChild(row)
 
-    // Add the actual station data
-    for (station of data) {
-        row = document.createElement('tr');
-        for (field of fields) {
-            row.appendChild(makeAndFillElt('td', station[field]));
+
+    for (station of data.stations){
+        let row =document.createElement('tr');
+        for (let key of Object.keys(station)){
+            let td = document.createElement('td');
+            td.innerHTML = JSON.stringify(station[key]);
+            row.appendChild(td)
         }
-        table.appendChild(row);
+        table.appendChild(row)
     }
-
-    return table;
+    tableDiv.appendChild(table);
 }
 
 
-function getFireStations() {
-let fn = function(req) {
-    // Get and empty the element where all this stuff goes
-    let div = document.getElementById('fire-station-table');
-    div.innerHTML = '';
 
-    //Only needed for HW
-    // Put a heading above the table
-    let h3 = document.createElement('h3');
-    h3.innerHTML = 'Table of fire stations'
-    div.appendChild(h3);
 
-    // Finally, add the table to the div
-    div.appendChild(makeTable(stations.meta.fields, stations.data));
+// function makeTable(fields, data) {
+//     // Make the table itself
+//     let table = document.createElement('table');
 
-}}
+//     // Add a header row to the table
+//     let row = document.createElement('tr');
+//     for (field of fields) {
+//         let field = Object.keys(stationArray[0])
+//         // Capitalize the field names
+//         displayTitle = field[0].toUpperCase() + field.substring(1).toLowerCase()
+//         row.appendChild(makeAndFillElt('th', displayTitle))
+//     }
+//     table.appendChild(row);
+
+//     // Add the actual station data
+//     for (station of data) {
+//         row = document.createElement('tr');
+//         for (field of fields) {
+//             row.appendChild(makeAndFillElt('td', station[field]));
+//         }
+//         table.appendChild(row);
+//     }
+
+//     return table;
+// }
+
+
+// function getFireStations() {
+//     // Get and empty the element where all this stuff goes
+//     let div = document.getElementById('fire-station-table');
+//     div.innerHTML = '';
+
+   
+//     // Put a heading above the table
+//     let h3 = document.createElement('h3');
+//     h3.innerHTML = 'Table of fire stations'
+//     div.appendChild(h3);
+
+//     // Finally, add the table to the div
+//     div.appendChild(makeTable(stations.meta.fields, stations.data));
+    
+    handleRequestOnCompletion(fn, 'https://moodle.converse.edu/CSC335/GSP-Fire-Stations.json');
+
